@@ -317,61 +317,26 @@ async def download_and_decrypt_video(url, cmd, name, key):
             return None  
 
 async def send_vid(bot: Client, m: Message, cc, filename, thumb, name, prog, channel_id):
-    # Step 1: Generate thumbnail
     subprocess.run(f'ffmpeg -i "{filename}" -ss 00:00:10 -vframes 1 "{filename}.jpg"', shell=True)
-    await prog.delete(True)
+    await prog.delete (True)
     reply1 = await bot.send_message(channel_id, f"**📩 Uploading Video 📩:-**\n<blockquote>**{name}**</blockquote>")
     reply = await m.reply_text(f"**Generate Thumbnail:**\n<blockquote>**{name}**</blockquote>")
-
     try:
         if thumb == "/d":
             thumbnail = f"{filename}.jpg"
         else:
             thumbnail = thumb
+            
     except Exception as e:
         await m.reply_text(str(e))
-
-    # Step 2: Add watermark to video
-    watermark_text = "AKSHAY"
-    watermarked_filename = f"watermarked_{filename}"
-
-    subprocess.run([
-        "ffmpeg", "-i", filename,
-        "-vf", f"drawtext=text='{watermark_text}':fontcolor=black@0.2:fontsize=24:x=(w-text_w)/2:y=(h-text_h)/2",
-        "-codec:a", "copy", watermarked_filename
-    ], check=True)
-
-    # Step 3: Use watermarked file instead
-    filename = watermarked_filename
-
-    # Step 4: Get duration
+      
     dur = int(duration(filename))
     start_time = time.time()
 
-    # Step 5: Upload video with fallback
     try:
-        await bot.send_video(
-            channel_id,
-            filename,
-            caption=cc,
-            supports_streaming=True,
-            height=720,
-            width=1280,
-            thumb=thumbnail,
-            duration=dur,
-            progress=progress_bar,
-            progress_args=(reply, start_time)
-        )
+        await bot.send_video(channel_id, filename, caption=cc, supports_streaming=True, height=720, width=1280, thumb=thumbnail, duration=dur, progress=progress_bar, progress_args=(reply, start_time))
     except Exception:
-        await bot.send_document(
-            channel_id,
-            filename,
-            caption=cc,
-            progress=progress_bar,
-            progress_args=(reply, start_time)
-        )
-
-    # Step 6: Cleanup
+        await bot.send_document(channel_id, filename, caption=cc, progress=progress_bar, progress_args=(reply, start_time))
     os.remove(filename)
     await reply.delete(True)
     await reply1.delete(True)
