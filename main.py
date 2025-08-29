@@ -1305,7 +1305,7 @@ async def txt_handler(bot: Client, m: Message):
             elif "https://cpvod.testbook.com/" in url:
                 url = url.replace("https://cpvod.testbook.com/","https://media-cdn.classplusapp.com/drm/")
                 #url = f"https://drmapijion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
-                url = f"https://drmapijion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
+                url = f"https://cpapi-ytas.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
                 mpd, keys = helper.get_mps_and_keys(url)
                 url = mpd
                 keys_string = " ".join([f"--key {key}" for key in keys])
@@ -1318,7 +1318,7 @@ async def txt_handler(bot: Client, m: Message):
              #   keys_string = " ".join([f"--key {key}" for key in keys])
 
             elif "classplusapp.com/drm/" in url:
-                url = f"https://drmapijion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
+                url = f"https://cpapi-ytas.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
               #  url = f"https://scammer-keys.vercel.app/api?url={url}&token={cptoken}&auth=@scammer_botxz1"
 
                 result = helper.get_mps_and_keys2(url)
