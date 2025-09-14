@@ -1855,7 +1855,14 @@ async def text_handler(bot: Client, m: Message):
 
 
 
-async def main():
-    await on_startup()
-asyncio.get_event_loop().run_until_complete(main())
-bot.run()
+from pyrogram import idle
+
+if __name__ == "__main__":
+    import asyncio
+
+    async def main():
+        await bot.start()           # bot connect होईल
+        await on_startup()          # आता startup message पाठवेल
+        await idle()                # bot चालू ठेव
+
+    asyncio.run(main())
