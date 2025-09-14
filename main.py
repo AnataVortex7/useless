@@ -39,11 +39,7 @@ import zipfile
 import shutil
 import ffmpeg
 
-async def on_startup():
-    try:
-        await bot.send_message(OWNER, "✅ Bot Updated Successfully!")
-    except Exception as e:
-        print(f"[ERROR: on_startup notify] {e}")
+
 
 AUTH_USERS_FILE = "auth_users.txt"
 AUTH_USERS = []
@@ -122,6 +118,13 @@ bot = Client(
     bot_token=BOT_TOKEN
 )
 
+@bot.on_start
+async def startup(client):
+    try:
+        await client.send_message(OWNER, "✅ Bot Updated Successfully!")
+    except Exception as e:
+        print(f"[ERROR: on_startup notify] {e}")
+        
 cookies_file_path = os.getenv("cookies_file_path", "youtube_cookies.txt")
 api_url = "http://master-api-v3.vercel.app/"
 api_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzkxOTMzNDE5NSIsInRnX3VzZXJuYW1lIjoi4p61IFtvZmZsaW5lXSIsImlhdCI6MTczODY5MjA3N30.SXzZ1MZcvMp5sGESj0hBKSghhxJ3k1GTWoBUbivUe1I"
@@ -1855,10 +1858,4 @@ async def text_handler(bot: Client, m: Message):
 
 
 if __name__ == "__main__":
-    import asyncio
-
-    async def main():
-        await on_startup()  # startup message
-    asyncio.get_event_loop().run_until_complete(main())
-
-    bot.run()   # only once
+    bot.run()
