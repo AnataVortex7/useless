@@ -509,7 +509,7 @@ await start_message.edit_text(
     f"Progress: [🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩] 100%\n\n"
 )
 
-    await asyncio.sleep(1)
+        await asyncio.sleep(1)
     if m.chat.id in AUTH_USERS:
         await start_message.edit_text(
             f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n" +
