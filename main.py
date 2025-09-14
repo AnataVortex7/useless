@@ -117,11 +117,9 @@ bot = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN
 )
-
-@bot.on_start
-async def startup(client):
+async def on_startup():
     try:
-        await client.send_message(OWNER, "✅ Bot Updated Successfully!")
+        await bot.send_message(OWNER, "✅ Bot Updated Successfully!")
     except Exception as e:
         print(f"[ERROR: on_startup notify] {e}")
         
@@ -1857,5 +1855,7 @@ async def text_handler(bot: Client, m: Message):
 
 
 
-if __name__ == "__main__":
-    bot.run()
+async def main():
+    await on_startup()
+asyncio.get_event_loop().run_until_complete(main())
+bot.run()
