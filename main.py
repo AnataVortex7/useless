@@ -1849,7 +1849,10 @@ async def text_handler(bot: Client, m: Message):
 
 
 if __name__ == "__main__":
-    bot.start()
     import asyncio
-    asyncio.get_event_loop().run_until_complete(on_startup())
-    bot.run()()
+
+    async def main():
+        await on_startup()  # startup message
+    asyncio.get_event_loop().run_until_complete(main())
+
+    bot.run()   # only once
