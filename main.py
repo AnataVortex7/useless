@@ -504,12 +504,12 @@ async def start(bot, m: Message):
     )
     await asyncio.sleep(1)
     await start_message.edit_text(
-    f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n"
-    f"Finalizing setup... ✅\n\n"
-    f"Progress: [🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩] 100%\n\n"
-)
+        f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n"
+        f"Finalizing setup... ✅\n\n"
+        f"Progress: [🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩] 99%\n\n"
+    )
 
-        await asyncio.sleep(1)
+    await asyncio.sleep(1)
     if m.chat.id in AUTH_USERS:
         await start_message.edit_text(
             f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n" +
