@@ -33,8 +33,8 @@ def get_mps_and_keys(api_url):
     try:
         response = requests.get(api_url, timeout=10)
         response_json = response.json()
-        mpd = response_json.get('MPD')
-        keys = response_json.get('KEYS')
+        mpd = response_json.get('MPD') or response_json.get('mpd_url')
+        keys = response_json.get('KEYS') or response_json.get('keys')
 
         if not mpd or not keys:
             return None
@@ -49,8 +49,8 @@ def get_mps_and_keys2(api_url):
     try:
         response = requests.get(api_url, timeout=10)
         response_json = response.json()
-        mpd = response_json.get('mpd_url')
-        keys = response_json.get('keys')
+        mpd = response_json.get('MPD') or response_json.get('mpd_url')
+        keys = response_json.get('KEYS') or response_json.get('keys')
 
         if not mpd or not keys:
             return None
