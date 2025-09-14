@@ -502,6 +502,12 @@ async def start(bot, m: Message):
         f"Checking subscription status... 🔍\n\n"
         f"Progress: [🟨🟨🟨🟨🟨🟨🟨🟨⬜️⬜️] 75%\n\n"
     )
+    await asyncio.sleep(1)
+await start_message.edit_text(
+    f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n"
+    f"Finalizing setup... ✅\n\n"
+    f"Progress: [🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩] 100%\n\n"
+)
 
     await asyncio.sleep(1)
     if m.chat.id in AUTH_USERS:
@@ -509,10 +515,10 @@ async def start(bot, m: Message):
             f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n" +
             f"Great! You are a premium member!\n"
             f"Use Command : /help to get started 🌟\n\n"
-            f"If you face any problem contact -  [PATIL](https://t.me/saini_contact_bot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
+            f"If you face any problem contact -  [PATIL](https://t.me/contact_bot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
         )
     else:
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)
         await start_message.edit_text(
            f" 🎉 Welcome {m.from_user.first_name} to DRM Bot! 🎉\n\n"
            f"You can have access to download all Non-DRM+AES Encrypted URLs 🔐 including\n\n"
@@ -556,7 +562,7 @@ async def id_command(client, message: Message):
            f"• 🎓 Utkarsh Protection(Video + PDF)\n"
            f"• 🎓 All Non DRM+AES Encrypted URLs\n"
            f"• 🎓 MPD URLs if the key is known (e.g., Mpd_url?key=key XX:XX)</blockquote>\n\n"
-           f"<b>💵 Monthly Plan: free</b>\n\n"
+           f"<b>💵 Monthly Plan: 800</b>\n\n"
            f"If you want to buy membership of the bot, feel free to contact the Bot Admin.\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
     )  
 
