@@ -1858,7 +1858,6 @@ async def text_handler(bot: Client, m: Message):
 
 
 if __name__ == "__main__":
-    reset_and_set_commands()
     notify_owner() 
 
 
