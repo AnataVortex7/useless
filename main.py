@@ -39,6 +39,12 @@ import zipfile
 import shutil
 import ffmpeg
 
+async def on_startup():
+    try:
+        await bot.send_message(OWNER, "✅ Bot Updated Successfully!")
+    except Exception as e:
+        print(f"[ERROR: on_startup notify] {e}")
+
 AUTH_USERS_FILE = "auth_users.txt"
 AUTH_USERS = []
 
@@ -1842,4 +1848,8 @@ async def text_handler(bot: Client, m: Message):
 
 
 
-bot.run()
+if __name__ == "__main__":
+    bot.start()
+    import asyncio
+    asyncio.get_event_loop().run_until_complete(on_startup())
+    bot.run()()
