@@ -103,8 +103,14 @@ def get_current_token():
     if not token_list:
         return None  # No token left
 
-    # फक्त पहिला token द्या (pop करू नका)
-    current_token = token_list[0]
+    # लिस्टमधून पहिला token काढून (pop) वापर
+    current_token = token_list.pop(0)
+
+    # Update the file
+    with open(TOKEN_LIST_PATH, "w") as f:
+        for t in token_list:
+            f.write(t + "\n")
+
     return current_token
 
 # ================================================================ #
