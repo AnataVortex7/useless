@@ -117,11 +117,13 @@ bot = Client(
     api_hash=API_HASH,
     bot_token=BOT_TOKEN
 )
-async def on_startup():
-    try:
-        await bot.send_message(OWNER, "✅ Bot Updated Successfully!")
-    except Exception as e:
-        print(f"[ERROR: on_startup notify] {e}")
+def notify_owner():
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    data = {
+        "chat_id": OWNER,
+        "text": "𝐁𝐨𝐭 𝐑𝐞𝐬𝐭𝐚𝐫𝐭𝐞𝐝 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 ✅"
+    }
+    requests.post(url, data=data)
         
 cookies_file_path = os.getenv("cookies_file_path", "youtube_cookies.txt")
 api_url = "http://master-api-v3.vercel.app/"
@@ -1855,14 +1857,6 @@ async def text_handler(bot: Client, m: Message):
 
 
 
-from pyrogram import idle
-
 if __name__ == "__main__":
-    import asyncio
-
-    async def main():
-        await bot.start()           # bot connect होईल
-        await on_startup()          # आता startup message पाठवेल
-        await idle()                # bot चालू ठेव
-
-    asyncio.run(main())
+    reset_and_set_commands()
+    notify_owner() 
