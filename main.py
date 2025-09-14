@@ -57,6 +57,30 @@ if os.path.exists(TOKEN_LIST_PATH):
     with open(TOKEN_LIST_PATH, "r") as f:
         token_list = [line.strip() for line in f if line.strip()]
 
+# def handle_token_failure(failed_token):
+   # global token_list, current_token
+   # if failed_token in token_list:
+     #   token_list.remove(failed_token)
+ #   with open(TOKEN_LIST_PATH, "w") as f:
+  #      for t in token_list:
+  #          f.write(t + "\n")
+#    current_token = None
+
+
+# def get_current_token():
+ #   global token_list, current_token
+
+ #   if not token_list:
+  #      return None  # No token left
+
+#    current_token = token_list.pop(0)
+
+    # Save updated token list
+   # with open(TOKEN_LIST_PATH, "w") as f:
+   #     for t in token_list:
+     #       f.write(t + "\n")
+
+ #   return current_token
 def handle_token_failure(failed_token):
     global token_list, current_token
     if failed_token in token_list:
@@ -73,15 +97,9 @@ def get_current_token():
     if not token_list:
         return None  # No token left
 
-    current_token = token_list.pop(0)
-
-    # Save updated token list
-    with open(TOKEN_LIST_PATH, "w") as f:
-        for t in token_list:
-            f.write(t + "\n")
-
+    # फक्त पहिला token द्या (pop करू नका)
+    current_token = token_list[0]
     return current_token
-
 
 # ================================================================ #
 # Initialize the bot
