@@ -137,12 +137,12 @@ photozip = 'https://envs.sh/cD_.jpg'
 
 
 # Inline keyboard for start command
-BUTTONSCONTACT = InlineKeyboardMarkup([[InlineKeyboardButton(text="📞 Contact", url="https://t.m_contact_bot")]])
+BUTTONSCONTACT = InlineKeyboardMarkup([[InlineKeyboardButton(text="📞 Contact", url="https://t.me/Driven_soulbot")]])
 keyboard = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton(text="🛠️ Help", url="https://t.me/+3NYwNGZl"),
-            InlineKeyboardButton(text="🛠️ Repo", url="https://github.caisaect"),
+            InlineKeyboardButton(text="🛠️ Help", url="https://t.me/Driven_soulbot"),
+            InlineKeyboardButton(text="🛠️ Repo", url="https://t.me/Driven_soulbot"),
         ],
     ]
 )
@@ -504,18 +504,10 @@ async def start(bot, m: Message):
     )
     await asyncio.sleep(1)
     await start_message.edit_text(
-        f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n"
-        f"Finalizing setup... ✅\n\n"
-        f"Progress: [🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩] 99%\n\n"
-    )
-
-    await asyncio.sleep(1)
-    if m.chat.id in AUTH_USERS:
-        await start_message.edit_text(
             f"🌟 Welcome {m.from_user.first_name}! 🌟\n\n" +
-            f"Great! You are a premium member!\n"
+            f"Gret to meet you again!\n"
             f"Use Command : /help to get started 🌟\n\n"
-            f"If you face any problem contact -  [PATIL](https://t.me/contact_bot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
+            f"If you face any problem contact -  [PATIL](https://t.me/Driven_soulbot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
         )
     else:
         await asyncio.sleep(1)
@@ -540,7 +532,11 @@ async def start(bot, m: Message):
            f"🚀 You are not subscribed to any plan yet!\n\n"
            f"<blockquote>💵 Monthly Plan: 800</blockquote>\n\n"
            f"If you want to buy membership of the bot, feel free to contact the Bot Admin.\n", disable_web_page_preview=True, reply_markup=keyboard
-    )
+        )
+
+#    await asyncio.sleep(1)
+   # if m.chat.id in AUTH_USERS:
+   #     await start_message.edit_text
 
 @bot.on_message(filters.command(["upgrade"]))
 async def id_command(client, message: Message):
