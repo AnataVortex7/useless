@@ -510,8 +510,8 @@ async def start(bot, m: Message):
             f"If you face any problem contact -  [PATIL](https://t.me/Driven_soulbot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
         )
     
-        await asyncio.sleep(1)
-        await start_message.edit_text(
+    await asyncio.sleep(1)
+    await start_message.edit_text(
            f" 🎉 Welcome {m.from_user.first_name} to DRM Bot! 🎉\n\n"
            f"You can have access to download all Non-DRM+AES Encrypted URLs 🔐 including\n\n"
            f"Use Command : /help to get started 🌟\n\n"
@@ -532,7 +532,7 @@ async def start(bot, m: Message):
            f"🚀 You are not subscribed to any plan yet!\n\n"
            f"<blockquote>💵 Monthly Plan: 800</blockquote>\n\n"
            f"If you want to buy membership of the bot, feel free to contact the Bot Admin.\n", disable_web_page_preview=True, reply_markup=keyboard
-        )
+    )
 
 #    await asyncio.sleep(1)
    # if m.chat.id in AUTH_USERS:
