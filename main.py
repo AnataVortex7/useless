@@ -509,7 +509,7 @@ async def start(bot, m: Message):
             f"Use Command : /help to get started 🌟\n\n"
             f"If you face any problem contact -  [PATIL](https://t.me/Driven_soulbot)\n", disable_web_page_preview=True, reply_markup=BUTTONSCONTACT
         )
-    else:
+    
         await asyncio.sleep(1)
         await start_message.edit_text(
            f" 🎉 Welcome {m.from_user.first_name} to DRM Bot! 🎉\n\n"
