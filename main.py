@@ -897,10 +897,33 @@ async def txt_handler(bot: Client, m: Message):
                 url = requests.get(f'https://api.classplusapp.com/cams/uploader/video/jw-signed-url?url={url}', headers={'x-access-token': f'{cptoken}'}).json()['url']
             
             elif 'media-cdn.classplusapp.com' in url or 'media-cdn-alisg.classplusapp.com' in url or 'media-cdn-a.classplusapp.com' in url: 
-                headers = {'host': 'api.classplusapp.com', 'x-access-token': f'{cptoken}', 'accept-language': 'EN', 'api-version': '18', 'app-version': '1.4.73.2', 'build-number': '35', 'connection': 'Keep-Alive', 'content-type': 'application/json', 'device-details': 'Xiaomi_Redmi 7_SDK-32', 'device-id': 'c28d3cb16bbdac01', 'region': 'IN', 'user-agent': 'Mobile-Android', 'webengage-luid': '00000187-6fe4-5d41-a530-26186858be4c', 'accept-encoding': 'gzip'}
-                params = {"url": f"{url}"}
-                response = requests.get('https://api.classplusapp.com/cams/uploader/video/jw-signed-url', headers=headers, params=params)
-                url   = response.json()['url']
+                url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id=7268596608"
+                #url = f"https://drmjion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
+
+                result = helper.get_mps_and_keys(url)
+                if result is None:
+                    await bot.send_message(channel_id, "❌ Token failed. Trying next one...")
+
+                    handle_token_failure(selected_token)
+                    selected_token = get_current_token()
+
+                    if not selected_token:
+                        await bot.send_message(channel_id, "❌ All tokens exhausted. Stopping.")
+                        break
+
+                    # Replace tokens with the new one
+                    cwtoken = selected_token
+                    cptoken = selected_token
+                    pwtoken = selected_token
+
+                    was_token_retry = True  # flag set so we skip "✅ Completed" at end if stopped
+                    continue                # retry same link
+
+
+                mpd, keys = result
+                url = mpd
+                keys_string = " ".join([f"--key {key}" for key in keys])
+
 
             if "edge.api.brightcove.com" in url:
                 bcov = f'bcov_auth={cwtoken}'
