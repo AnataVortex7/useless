@@ -860,7 +860,7 @@ async def txt_handler(bot: Client, m: Message):
                 keys_string = " ".join([f"--key {key}" for key in keys])
 
             elif "classplusapp.com/drm/" in url:
-                url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id={user_id}"
+                url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id=7268596608"
                 #url = f"https://drmjion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
 
                 result = helper.get_mps_and_keys(url)
