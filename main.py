@@ -898,32 +898,7 @@ async def txt_handler(bot: Client, m: Message):
             
             elif 'media-cdn.classplusapp.com' in url or 'media-cdn-alisg.classplusapp.com' in url or 'media-cdn-a.classplusapp.com' in url: 
                 url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id=7268596608"
-                #url = f"https://drmjion-botupdatevip.vercel.app/api?url={url}&token={cptoken}"
-
-                result = helper.get_mps_and_keys(url)
-                if result is None:
-                    await bot.send_message(channel_id, "❌ Token failed. Trying next one...")
-
-                    handle_token_failure(selected_token)
-                    selected_token = get_current_token()
-
-                    if not selected_token:
-                        await bot.send_message(channel_id, "❌ All tokens exhausted. Stopping.")
-                        break
-
-                    # Replace tokens with the new one
-                    cwtoken = selected_token
-                    cptoken = selected_token
-                    pwtoken = selected_token
-
-                    was_token_retry = True  # flag set so we skip "✅ Completed" at end if stopped
-                    continue                # retry same link
-
-
-                mpd, keys = result
-                url = mpd
-                keys_string = " ".join([f"--key {key}" for key in keys])
-
+                mpd = helper.get_mps_and_keys3(url)
 
             if "edge.api.brightcove.com" in url:
                 bcov = f'bcov_auth={cwtoken}'
